@@ -10,7 +10,10 @@
 // output: 4
 
 function returnIndex(arr, str) {
-  // TODO your code here
+
+  const processed = arr.findIndex(name => name === str)
+  return processed;
+
 }
 
 //-------------------------------------------
@@ -23,7 +26,13 @@ function returnIndex(arr, str) {
 // output: true
 
 function hasName(arr, name) {
-  // TODO your code here
+
+  const search = arr.find(guy => guy === name)
+  if (search) {
+    return true
+  } else {
+    return false
+  }
 }
 
 //-------------------------------------------
@@ -38,12 +47,49 @@ function hasName(arr, name) {
 // input: 1000
 // output: { error: "No user with that id." } 
 
-let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'Peter' },
-{ id: 17, name: 'St. MaryLou de la Playa Carmen' }, { id: 51, name: 'Doug' },
-{ id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
+let staff = [{
+    id: 1,
+    name: 'Jon'
+  }, {
+    id: 2,
+    name: 'Yuli'
+  }, {
+    id: 21,
+    name: 'Peter'
+  },
+  {
+    id: 17,
+    name: 'St. MaryLou de la Playa Carmen'
+  }, {
+    id: 51,
+    name: 'Doug'
+  },
+  {
+    id: 881,
+    name: 'Paul'
+  }, {
+    id: 0,
+    name: 'Jon'
+  }, {
+    id: 999,
+    name: 'Timma'
+  }
+]
 
 function findById(id) {
-  // TODO YOUR CODE HERE
+
+  const found = staff.find(staff => staff.id === id)
+
+  if (!found) {
+    return {
+      error: "No user with that id."
+    }
+  } else {
+    return found
+  }
+
+
+
 }
 
 //-------------------------------------------
@@ -70,7 +116,32 @@ let theBand = {
 }
 
 function bandMemberDetails(name) {
-  // TODO YOUR CODE HERE
+  // BROKEN EXPERIMENTS ////////////////
+  // let found = theBand.members.find(member => {
+  //   member.name.toLowerCase().includes(name)
+  // })
+  // if (found) {
+  //   let instrument = found.instrument
+  //   return `${found} is in the band and plays the ${instrument}`
+  // }
+  // BROKEN EXPERIMENTS //////////////
+  // theBand.members.forEach(member => {
+  //   if (member.name === name) {
+  //     let found = member.name;
+  //     let instrument = member.instrument
+  //     return `${found} is in the band and plays the ${instrument}`
+  //   }
+  // })
+
+  for (let i = 0; i < theBand.members.length; i++) {
+    const member = theBand.members[i];
+    if (member.name.includes(name)) {
+      let found = member.name;
+      let instrument = member.instrument;
+      return `${found} is in the band and plays the ${instrument}`
+    }
+  }
+
 }
 
 //-------------------------------------------
@@ -106,5 +177,19 @@ let flights = [{
 }]
 
 function flightCost(destination, firstClass) {
-  // TODO YOUR CODE HERE
+
+  for (let i = 0; i < flights.length; i++) {
+    const flight = flights[i];
+
+    if (firstClass) {
+      if (flight.to === destination) {
+        return flight.prices.firstClass
+      }
+
+    } else {
+      if (flight.to === destination) {
+        return flight.prices.standard
+      }
+    }
+  }
 }
